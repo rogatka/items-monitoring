@@ -1,0 +1,33 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
+    security.protocol: SSL
+    ssl:
+      trust-store-location: ${KAFKA_SSL_TRUSTSTORE_LOCATION}
+      trust-store-password: ${KAFKA_SSL_TRUSTSTORE_PASSWORD}
+      key-store-location: ${KAFKA_SSL_KEYSTORE_LOCATION}
+      key-store-password: ${KAFKA_SSL_KEYSTORE_PASSWORD}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener.ack-mode: manual
+    consumer:
+      group_id: ${KAFKA_CONSUMER_GROUP_ID}
+      auto-offset-reset: earliest
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    properties:
+#      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY}
+      topic:
+        producer:
+          new-items: ${KAFKA_NEW_ITEMS_TOPIC}
+        consumer:
+          new-items: ${KAFKA_NEW_ITEMS_TOPIC}
+
+parsing:
+  cron: ${PARSING_CRONE}
+  citilink:
+    base-url: ${CITILINK_BASE_URL}
+
+logging.level:
+  ROOT: debug

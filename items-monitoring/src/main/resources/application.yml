@@ -1,0 +1,31 @@
+server:
+  port: 8083
+
+spring:
+  data:
+    mongodb:
+      host: ${ITEMS_DB_HOST}
+      port: ${ITEMS_DB_PORT}
+      database: ${ITEMS_DB_NAME}
+      username: ${ITEMS_DB_USER}
+      password: ${ITEMS_DB_PASSWORD}
+  cache:
+    type: redis
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI}
+        registration:
+          keycloak:
+            client-id: ${KEYCLOAK_CLIENT_ID}
+
+logging:
+  level:
+    ROOT: WARN
+    com.items.monitor: INFO

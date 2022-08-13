@@ -1,0 +1,35 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    mongodb:
+      host: ${ITEMS_DB_HOST}
+      port: ${ITEMS_DB_PORT}
+      database: ${ITEMS_DB_NAME}
+      username: ${ITEMS_DB_USER}
+      password: ${ITEMS_DB_PASSWORD}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
+    security.protocol: SSL
+    ssl:
+      trust-store-location: ${KAFKA_SSL_TRUSTSTORE_LOCATION}
+      trust-store-password: ${KAFKA_SSL_TRUSTORE_PASSWORD}
+      key-store-location: ${KAFKA_SSL_KEYSTORE_LOCATION}
+      key-store-password: ${KAFKA_SSL_KEYSTORE_PASSWORD}
+    listener.ack-mode: manual
+    consumer:
+      group_id: ${KAFKA_CONSUMER_GROUP_ID}
+      auto-offset-reset: earliest
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    properties:
+#      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY}
+      topic:
+        consumer:
+          new-items: ${KAFKA_NEW_ITEMS_TOPIC}
+
+logging:
+  level:
+    ROOT: WARN
+    com.items.uploader: INFO

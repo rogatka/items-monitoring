@@ -1,0 +1,28 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: items-database
+      username: uploader
+      password: uploader
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8484/auth/realms/items_monitoring_realm
+        registration:
+          keycloak:
+            client-id: items_monitoring_client
+
+logging:
+  level:
+    ROOT: INFO
+    com.items.monitor: DEBUG

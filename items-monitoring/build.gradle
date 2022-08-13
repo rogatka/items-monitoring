@@ -1,0 +1,53 @@
+plugins {
+	id "org.springframework.boot" version "2.7.2"
+	id "io.spring.dependency-management" version "1.0.12.RELEASE"
+	id "java"
+}
+
+group = "com.items"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "17"
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+ext {
+	mapStructVersion = "1.5.2.Final"
+	openApiVersion = "1.6.9"
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+	implementation "org.springframework.boot:spring-boot-starter-webflux"
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-security"
+	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+	compileOnly "org.projectlombok:lombok"
+	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-cache"
+	implementation "org.springframework.boot:spring-boot-starter-data-redis"
+
+	// order is important here
+	annotationProcessor "org.projectlombok:lombok"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "org.springframework.kafka:spring-kafka-test"
+}
+
+tasks.named("test") {
+	useJUnitPlatform()
+}

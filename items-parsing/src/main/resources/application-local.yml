@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9093
+    security.protocol: SSL
+    ssl:
+      trust-store-location: classpath:/ssl/kafka.truststore.jks
+      trust-store-password: 123456
+      key-store-location:  classpath:/ssl/kafka.keystore.jks
+      key-store-password: 123456
+    listener.ack-mode: manual
+    consumer:
+      group_id: test
+      auto-offset-reset: earliest
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    properties:
+#      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY}
+      topic:
+        producer:
+          new-items: new_items
+        consumer:
+          new-items: new_items
+
+parsing:
+  cron: 0 0 * * * *
+  citilink:
+    base-url: https://www.citilink.ru
+
+logging.level:
+  ROOT: INFO
