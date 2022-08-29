@@ -7,10 +7,10 @@
 package com.items.monitoring.configuration;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.items.monitoring.repository")
+@EnableReactiveMongoRepositories(basePackages = "com.items.monitoring.repository")
 public class MongoConfiguration {
 
 }

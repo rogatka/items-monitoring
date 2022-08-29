@@ -29,16 +29,15 @@ repositories {
 }
 
 dependencies {
-	implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+	implementation "org.springframework.boot:spring-boot-starter-data-mongodb-reactive"
 	implementation "org.springframework.boot:spring-boot-starter-webflux"
-	implementation "org.springframework.boot:spring-boot-starter-web"
 	implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
 	compileOnly "org.projectlombok:lombok"
 	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-cache"
-	implementation "org.springframework.boot:spring-boot-starter-data-redis"
+	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
 
 	// order is important here
 	annotationProcessor "org.projectlombok:lombok"

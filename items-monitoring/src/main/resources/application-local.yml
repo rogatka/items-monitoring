@@ -25,4 +25,4 @@ spring:
 logging:
   level:
     ROOT: INFO
-    com.items.monitor: DEBUG
+    com.items.monitoring: DEBUG

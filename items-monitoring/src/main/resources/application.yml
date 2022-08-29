@@ -28,4 +28,4 @@ spring:
 logging:
   level:
     ROOT: WARN
-    com.items.monitor: INFO
+    com.items.monitoring: INFO
