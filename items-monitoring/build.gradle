@@ -2,6 +2,7 @@ plugins {
 	id "org.springframework.boot" version "2.7.2"
 	id "io.spring.dependency-management" version "1.0.12.RELEASE"
 	id "java"
+	id "org.springdoc.openapi-gradle-plugin" version "1.6.0"
 }
 
 group = "com.items"
@@ -18,6 +19,13 @@ ext {
 	openApiVersion = "1.6.9"
 }
 
+openApi {
+	apiDocsUrl.set("http://localhost:8083/v3/api-docs")
+	outputDir.set(file("$projectDir/docs"))
+	outputFileName.set("swagger.json")
+	waitTimeInSeconds.set(10)
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -31,13 +39,15 @@ repositories {
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-data-mongodb-reactive"
 	implementation "org.springframework.boot:spring-boot-starter-webflux"
-	implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
+	implementation "org.springdoc:springdoc-openapi-webflux-ui:${openApiVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
 	compileOnly "org.projectlombok:lombok"
 	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-cache"
 	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
+	implementation "org.springframework.boot:spring-boot-starter-data-elasticsearch"
+	implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
 
 	// order is important here
 	annotationProcessor "org.projectlombok:lombok"

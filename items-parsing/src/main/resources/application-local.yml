@@ -23,14 +23,23 @@ spring:
 #      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY}
       topic:
         producer:
-          new-items: new_items
+          new-items:
+            smartphones: new_items.smartphones
+            games: new_items.games
         consumer:
-          new-items: new_items
+          new-items:
+            smartphones: new_items.smartphones
+            games: new_items.games
 
 parsing:
   cron: 0 0 * * * *
-  citilink:
-    base-url: https://www.citilink.ru
+  smartphones:
+    citilink:
+      base-url: https://www.citilink.ru
+  games:
+    rawg:
+      base-url: https://api.rawg.io
+      api-key: ${RAWG_API_KEY}
 
 logging.level:
   ROOT: INFO

@@ -24,7 +24,9 @@ spring:
 #      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY}
       topic:
         consumer:
-          new-items: new_items
+          new-items:
+            smartphones: new_items.smartphones
+            games: new_items.games
 
 logging:
   level:

@@ -3,7 +3,7 @@ services:
   trip-mongo-database:
     image: mongo:5.0
     container_name: items-mongo-db
-    restart: always
+    restart: on-failure
     ports:
       - "27017:27017"
     environment:

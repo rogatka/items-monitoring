@@ -1,49 +1,51 @@
-/*
- * Copyright © 2021 EPAM Systems, Inc. All Rights Reserved. All information contained herein is, and remains the
- * property of EPAM Systems, Inc. and/or its suppliers and is protected by international intellectual
- * property law. Dissemination of this information or reproduction of this material is strictly forbidden,
- * unless prior written permission is obtained from EPAM Systems, Inc
- */
 package com.items.parsing.messaging.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.items.parsing.parsers.ItemDto;
+import com.items.parsing.parsers.ItemCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.EnumMap;
+
 @Slf4j
 @Component
-public class KafkaNewItemsSender implements KafkaMessageSender<ItemDto> {
+public class KafkaNewItemsSender<T> {
 
     private final ObjectMapper objectMapper;
 
-    private final String topicName;
-
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+    private final EnumMap<ItemCategory, String> itemCategoryTopicMap;
+
     public KafkaNewItemsSender(ObjectMapper objectMapper,
-                               @Value("${spring.kafka.properties.topic.producer.new-items}") String topicName,
+                               @Value("${spring.kafka.properties.topic.producer.new-items.smartphones}") String smartphonesTopicName,
+                               @Value("${spring.kafka.properties.topic.producer.new-items.games}") String gamesTopicName,
                                KafkaTemplate<String, String> kafkaTemplate) {
         this.objectMapper = objectMapper;
-        this.topicName = topicName;
         this.kafkaTemplate = kafkaTemplate;
+
+        this.itemCategoryTopicMap = new EnumMap<>(ItemCategory.class);
+        itemCategoryTopicMap.put(ItemCategory.SMARTPHONE, smartphonesTopicName);
+        itemCategoryTopicMap.put(ItemCategory.GAME, gamesTopicName);
     }
 
-    @Override
-    public void send(ItemDto itemDto, String key) {
+    public void send(T item, String key, ItemCategory itemCategory) {
         try {
-            String itemJson = objectMapper.writeValueAsString(itemDto);
+            String itemJson = objectMapper.writeValueAsString(item);
             log.info("Sending ItemInfo -> {}", itemJson);
-            kafkaTemplate.send(topicName, key, itemJson)
-                    .addCallback(
-                            result -> log.info("ItemInfo has been successfully sent -> {}", itemDto),
-                            ex -> log.error("Error during sending ItemInfo ({}) -> {}", itemDto, ex.getMessage())
-                    );
+            kafkaTemplate.send(itemCategoryTopicMap.get(itemCategory), key, itemJson)
+                    .whenComplete((result, ex) -> {
+                        if (ex != null) {
+                            log.error("Error during sending ItemInfo ({}) -> {}", item, ex.getMessage());
+                        } else {
+                            log.info("ItemInfo has been successfully sent -> {}", item);
+                        }
+                    });
         } catch (JsonProcessingException e) {
-            log.error("Cannot serialize ItemInfo -> {}", itemDto);
+            log.error("Cannot serialize ItemInfo -> {}", item);
             throw new RuntimeException(e);
         }
     }

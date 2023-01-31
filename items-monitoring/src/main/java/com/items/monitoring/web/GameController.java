@@ -1,8 +1,8 @@
 package com.items.monitoring.web;
 
-import com.items.monitoring.mapper.ItemMapper;
-import com.items.monitoring.service.ItemService;
-import com.items.monitoring.web.response.ItemResponse;
+import com.items.monitoring.mapper.GameMapper;
+import com.items.monitoring.service.GameService;
+import com.items.monitoring.web.response.GameResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -16,28 +16,28 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Tag(name = "Items API")
+@Tag(name = "Games API")
 @RestController
 @PreAuthorize("hasRole('USER')")
-@RequestMapping("/items")
+@RequestMapping("/games")
 @RequiredArgsConstructor
-public class ItemController {
+public class GameController {
 
-    private final ItemService itemService;
+    private final GameService gameService;
 
-    private final ItemMapper itemMapper;
+    private final GameMapper gameMapper;
 
-    @Operation(description = "Find item by id")
+    @Operation(description = "Find game by id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ItemResponse> findById(@PathVariable String id) {
-        return itemService.findById(id).map(itemMapper::map);
+    public Mono<GameResponse> findById(@PathVariable String id) {
+        return gameService.findById(id).map(gameMapper::map);
     }
 
-    @Operation(description = "Find all items")
+    @Operation(description = "Find all games")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Flux<ItemResponse> findAll() {
-        return itemService.findAll().map(itemMapper::map);
+    public Flux<GameResponse> findAll() {
+        return gameService.findAll().map(gameMapper::map);
     }
 }

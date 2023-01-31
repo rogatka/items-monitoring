@@ -1,23 +1,24 @@
-package com.items.monitoring.web.response;
+package com.items.monitoring.model;
 
-import com.items.monitoring.model.Item;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class ItemResponse {
-
-    private String id;
+@Document("smartphones")
+@Getter
+@Setter
+@ToString
+public class Smartphone extends Item implements Serializable {
 
     private String code;
 
@@ -35,12 +36,19 @@ public class ItemResponse {
 
     private String ramSize;
 
-    private List<Item.PriceHistoryElem> priceHistory;
+    private List<PriceHistoryElem> priceHistory;
+
+    public void addPriceHistory(PriceHistoryElem priceHistoryElem) {
+        if (priceHistory == null) {
+            priceHistory = new ArrayList<>();
+        }
+        priceHistory.add(priceHistoryElem);
+    }
+
 
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class DisplayInfo {
+    @Builder
+    public static class DisplayInfo implements Serializable{
 
         private String type;
 
@@ -48,8 +56,7 @@ public class ItemResponse {
     }
 
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
+    @Builder
     public static class PriceHistoryElem implements Serializable {
 
         @CreatedDate

@@ -1,4 +1,4 @@
-package com.items.parsing.parsers;
+package com.items.parsing.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class ItemDto {
+public class SmartphoneDto {
 
     private String code;
 
@@ -28,7 +28,7 @@ public class ItemDto {
 
     @Data
     @Builder
-    static class DisplayInfo {
+    public static class DisplayInfo {
 
         private String type;
 

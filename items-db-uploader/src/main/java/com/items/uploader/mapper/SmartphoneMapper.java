@@ -1,14 +1,14 @@
 package com.items.uploader.mapper;
 
 import com.items.uploader.configuration.MapperConfiguration;
-import com.items.uploader.model.Item;
-import com.items.uploader.model.dto.ItemDto;
+import com.items.uploader.model.Smartphone;
+import com.items.uploader.model.dto.SmartphoneDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", config = MapperConfiguration.class)
-public interface ItemMapper {
+public interface SmartphoneMapper {
 
     @Mapping(source = "price", target = "lastPrice")
-    Item map(ItemDto dto);
+    Smartphone map(SmartphoneDto dto);
 }

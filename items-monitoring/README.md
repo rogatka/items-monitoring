@@ -1,6 +1,6 @@
 ## Monitoring API
 ### Summary
-Application allows to retrieve items from DB (MongoDB) to track item's price history.
+Application allows to retrieve items from DB (MongoDB).
 
 ### How to run locally
 Application requires 
@@ -17,7 +17,7 @@ Application requires
 
 **'keycloak-docker' directory:**
 3. Run the 'docker-compose' from the 'keycloak-docker' directory (docker-compose up).
-4. Configure realm, client and user with role 'USER'
+4. Create realm with name "items_monitoring_realm", client with name "items_monitoring_client" and user with role 'USER'
 
 **current project's directory:**
 5. Copy username and password for user created on Step #1 to application-local.yml
