@@ -1,7 +1,7 @@
 package com.items.monitoring.service;
 
 import com.items.monitoring.model.Game;
-import com.items.monitoring.repository.GameRepository;
+import com.items.monitoring.repository.mongo.GameRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;

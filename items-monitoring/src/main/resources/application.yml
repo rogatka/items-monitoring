@@ -25,7 +25,17 @@ spring:
           keycloak:
             client-id: ${KEYCLOAK_CLIENT_ID}
 
+management:
+  tracing:
+    enabled: true
+    sampling.probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_ENDPOINT}
+
 logging:
+  pattern:
+    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
   level:
     ROOT: WARN
     com.items.monitoring: INFO

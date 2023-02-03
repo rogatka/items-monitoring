@@ -31,7 +31,17 @@ spring:
             smartphones: ${KAFKA_NEW_ITEMS_SMARTPHONES_TOPIC}
             games: ${KAFKA_NEW_ITEMS_GAMES_TOPIC}
 
+management:
+  tracing:
+    enabled: true
+    sampling.probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_ENDPOINT}
+
 logging:
+  pattern:
+    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
   level:
     ROOT: WARN
     com.items.uploader: INFO

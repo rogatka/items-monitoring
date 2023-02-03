@@ -8,6 +8,7 @@ import com.items.uploader.model.SearchIndex;
 import com.items.uploader.model.dto.GameDto;
 import com.items.uploader.service.ElasticsearchService;
 import com.items.uploader.service.GameService;
+import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+@Observed
 @Component
 @Slf4j
 @RequiredArgsConstructor

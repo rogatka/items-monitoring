@@ -3,6 +3,7 @@ package com.items.parsing.messaging.kafka;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.items.parsing.parsers.ItemCategory;
+import io.micrometer.observation.annotation.Observed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;
 
+@Observed
 @Slf4j
 @Component
 public class KafkaNewItemsSender<T> {

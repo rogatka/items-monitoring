@@ -1,6 +1,3 @@
-server:
-  port: 8081
-
 spring:
   kafka:
     bootstrap-servers: localhost:9093
@@ -31,6 +28,11 @@ spring:
             smartphones: new_items.smartphones
             games: new_items.games
 
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
 parsing:
   cron: 0 0 * * * *
   smartphones:
@@ -41,5 +43,6 @@ parsing:
       base-url: https://api.rawg.io
       api-key: ${RAWG_API_KEY}
 
-logging.level:
-  ROOT: INFO
+logging:
+  level:
+    ROOT: INFO

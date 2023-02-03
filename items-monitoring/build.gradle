@@ -1,8 +1,8 @@
 plugins {
-	id "org.springframework.boot" version "2.7.2"
-	id "io.spring.dependency-management" version "1.0.12.RELEASE"
+	id "org.springframework.boot" version "${springBootVersion}"
+	id "io.spring.dependency-management" version "${ioSpringDependencyManagementPluginVersion}"
 	id "java"
-	id "org.springdoc.openapi-gradle-plugin" version "1.6.0"
+	id "org.springdoc.openapi-gradle-plugin" version "${springDocOpenApiGradlePluginVersion}"
 }
 
 group = "com.items"
@@ -15,8 +15,9 @@ tasks.withType(JavaCompile) {
 }
 
 ext {
-	mapStructVersion = "1.5.2.Final"
-	openApiVersion = "1.6.9"
+	mapStructVersion = "1.5.3.Final"
+	openApiVersion = "1.6.14"
+	micrometerTracingBomVersion = "1.0.1"
 }
 
 openApi {
@@ -42,12 +43,18 @@ dependencies {
 	implementation "org.springdoc:springdoc-openapi-webflux-ui:${openApiVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+	implementation "org.springframework.boot:spring-boot-starter-aop"
 	compileOnly "org.projectlombok:lombok"
 	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-cache"
 	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
 	implementation "org.springframework.boot:spring-boot-starter-data-elasticsearch"
 	implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+	implementation(platform("io.micrometer:micrometer-tracing-bom:${micrometerTracingBomVersion}"))
+	implementation("io.micrometer:micrometer-tracing")
+	implementation("io.micrometer:micrometer-tracing-bridge-otel")
+	implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
 
 	// order is important here
 	annotationProcessor "org.projectlombok:lombok"

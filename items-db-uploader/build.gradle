@@ -15,6 +15,7 @@ tasks.withType(JavaCompile) {
 
 ext {
 	mapStructVersion = "1.5.3.Final"
+	micrometerTracingBomVersion = "1.0.1"
 }
 
 configurations {
@@ -32,6 +33,12 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-webflux"
 	implementation "org.springframework.kafka:spring-kafka"
 	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+	implementation "org.springframework.boot:spring-boot-starter-aop"
+	implementation(platform("io.micrometer:micrometer-tracing-bom:${micrometerTracingBomVersion}"))
+	implementation("io.micrometer:micrometer-tracing")
+	implementation("io.micrometer:micrometer-tracing-bridge-otel")
+	implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
 	compileOnly "org.projectlombok:lombok"
 
 	// order is important here

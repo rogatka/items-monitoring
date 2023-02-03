@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document("games")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "index_games")
 @Getter
 @Setter
 @ToString

@@ -1,12 +1,14 @@
 ## Db Uploader API
 ### Summary
-Application consumes messages from Message Broker (Apache Kafka) and then conditionally uploads them to DB (MongoDB)
+Application consumes messages from Message Broker (Apache Kafka). 
+Then, conditionally uploads the data to MongoDB and ElasticSearch.
 
 
 ### How to run locally
 Application requires:
 - Kafka server (with SSL to authenticate)
 - MongoDB
+- ElasticSearch
 
 **'kafka-docker' directory:**
 1. Run the 'kafka-generate-ssl' file from 'kafka-docker' directory. It will generate 'truststore' and 'keystore'
@@ -19,8 +21,15 @@ Application requires:
 4. Run the 'docker-compose' from the 'mongo-docker' directory (docker-compose up). The 'mongo-init.js' will create a 
 user that is used by the application to connect to MongoDB
 
+**'elasticsearch-docker'** directory:
+5. Run the 'docker-compose' from the 'elasticsearch-docker' directory (docker-compose up).
+
 **current project's directory:**
-5. Copy certs from Step #1 to '/resources/ssl' directory (current project).
-6. Copy passwords which you used during Step #1 to application-local.yml
-7. Copy username and password for user created on Step #4 to application-local.yml
-8. Run the application
+6. Copy certs from Step #1 to '/resources/ssl' directory (current project).
+7. Copy passwords which you used during Step #1 to application-local.yml
+8. Copy username and password for user created on Step #4 to application-local.yml
+9. Run the application
+
+**zipkin-docker** directory _(optionally - to enable tracing)_:
+
+Run the 'docker-compose' from the 'zipkin-docker' directory (docker-compose up)

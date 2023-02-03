@@ -3,6 +3,7 @@ package com.items.monitoring.web;
 import com.items.monitoring.mapper.SmartphoneMapper;
 import com.items.monitoring.service.SmartphoneService;
 import com.items.monitoring.web.response.SmartphoneResponse;
+import io.micrometer.observation.annotation.Observed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Observed
 @Tag(name = "Smartphones API")
 @RestController
 @PreAuthorize("hasRole('USER')")

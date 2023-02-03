@@ -1,7 +1,7 @@
 package com.items.monitoring.service;
 
 import com.items.monitoring.model.Smartphone;
-import com.items.monitoring.repository.SmartphoneRepository;
+import com.items.monitoring.repository.mongo.SmartphoneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;

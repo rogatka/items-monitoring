@@ -2,6 +2,7 @@ package com.items.parsing.scheduler;
 
 
 import com.items.parsing.parsers.ItemsParser;
+import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Observed
 @Slf4j
 @Component
 @RequiredArgsConstructor

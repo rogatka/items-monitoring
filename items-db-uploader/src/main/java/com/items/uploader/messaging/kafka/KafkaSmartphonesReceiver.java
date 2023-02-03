@@ -8,6 +8,7 @@ import com.items.uploader.model.Smartphone;
 import com.items.uploader.model.dto.SmartphoneDto;
 import com.items.uploader.service.ElasticsearchService;
 import com.items.uploader.service.SmartphoneService;
+import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Observed
 @Component
 @Slf4j
 @RequiredArgsConstructor

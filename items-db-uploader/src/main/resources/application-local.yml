@@ -28,6 +28,11 @@ spring:
             smartphones: new_items.smartphones
             games: new_items.games
 
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
 logging:
   level:
     ROOT: INFO
