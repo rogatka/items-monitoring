@@ -8,8 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class UIController {
 
-    @GetMapping("/search-ui")
+    @GetMapping("/")
     public String home() {
+        return "redirect:/search-ui";
+    }
+
+    @GetMapping("/search-ui")
+    public String search() {
         return "search";
+    }
+
+    @GetMapping("/reports")
+    public String reports() {
+        return "reports";
     }
 }

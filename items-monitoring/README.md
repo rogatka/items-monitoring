@@ -1,7 +1,7 @@
 ## Monitoring API
 ### Summary
 Application allows to retrieve items from MongoDB and Redis cache.
-Application also has simple UI to search for items (using ElasticSearch).
+Application also has simple UI to search for items (using ElasticSearch) and generate PDF or XLSX reports.
 
 ### How to run locally
 Application requires 

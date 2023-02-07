@@ -1,7 +1,10 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven { url "https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/" }
+        maven { url "https://jasperreports.sourceforge.net/maven2/" }
     }
 }
 rootProject.name = 'items-monitoring'
