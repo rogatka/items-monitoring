@@ -36,7 +36,7 @@ public class GameResponse {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class RatingHistoryElem implements Serializable{
+    public static class RatingHistoryElem implements Serializable {
 
         @CreatedDate
         private Instant date;

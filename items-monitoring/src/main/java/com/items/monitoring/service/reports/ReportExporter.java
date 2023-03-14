@@ -4,5 +4,6 @@ import com.items.monitoring.model.Report;
 
 public interface ReportExporter {
     Report export();
+
     ReportCase getReportCase();
 }

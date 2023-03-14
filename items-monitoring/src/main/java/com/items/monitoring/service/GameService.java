@@ -29,7 +29,8 @@ public class GameService {
         if (cachedValue == null) {
             gameMono = gameRepository.findById(id)
                     .doOnSuccess(smartphone -> gamesCache.putIfAbsent(id, smartphone))
-                    .switchIfEmpty(Mono.error(() -> new RuntimeException(String.format("Smartphone with id = %s not found", id))));
+                    .switchIfEmpty(Mono.error(() ->
+                            new RuntimeException(String.format("Smartphone with id = %s not found", id))));
         } else {
             Game cachedGame = (Game) cachedValue.get();
             log.debug("Took cached value = {}", cachedGame);

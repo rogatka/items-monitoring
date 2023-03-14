@@ -27,7 +27,8 @@ public class GameSearchService {
 		return elasticsearchGameRepository.findFuzzyByName(query)
 				// if empty, go to mongo
 				.switchIfEmpty(s -> gameRepository.findByNameLike(query)
-						// if found, save to elasticsearch so next time value will be retrieved from elasticsearch
+						// if found, save to elasticsearch so next time value
+						// will be retrieved from elasticsearch
 						.doOnNext(e -> elasticsearchGameRepository.save(e).subscribe())
 						.subscribe(s));
 	}

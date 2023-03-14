@@ -49,7 +49,7 @@ public class Smartphone extends Item implements Serializable {
 
     @Data
     @Builder
-    public static class DisplayInfo implements Serializable{
+    public static class DisplayInfo implements Serializable {
 
         private String type;
 

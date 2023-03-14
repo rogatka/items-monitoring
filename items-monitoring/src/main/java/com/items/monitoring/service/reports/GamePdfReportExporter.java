@@ -1,5 +1,6 @@
 package com.items.monitoring.service.reports;
 
+import com.items.monitoring.model.Game;
 import com.items.monitoring.model.ItemCategory;
 import com.items.monitoring.model.Report;
 import com.items.monitoring.repository.mongo.GameRepository;
@@ -14,6 +15,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -38,7 +40,13 @@ public class GamePdfReportExporter implements ReportExporter {
             JasperReport jasperReport = JasperCompileManager.compileReport(employeeReportStream);
             LocalDate oneMonthAgo = LocalDate.now(clock).minusMonths(1);
 
-            JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(gameRepository.findByReleaseDateAfter(oneMonthAgo.format(DateTimeFormatter.ISO_LOCAL_DATE), Sort.by(Sort.Direction.DESC, "lastRating"))
+            // Flux<Game> result = gameRepository.findByReleaseDateAfter(
+            // oneMonthAgo.format(DateTimeFormatter.ISO_LOCAL_DATE), Sort.by(Sort.Direction.DESC, "lastRating")
+            // );
+            Flux<Game> result = gameRepository.findByReleaseDateAfter(
+                    oneMonthAgo, Sort.by(Sort.Direction.DESC, "lastRating")
+            );
+            JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(result
                     .collectList()
                     .toFuture()
                     .get());

@@ -23,6 +23,8 @@ public class ReportExporterAggregator {
 
     public ReportExporter getExporter(ReportCase reportCase) {
         return Optional.ofNullable(reportExportersMap.get(reportCase))
-                .orElseThrow(() -> new RuntimeException(String.format("No ReportExporter found for case [%s]", reportCase)));
+                .orElseThrow(() ->
+                        new RuntimeException(String.format("No ReportExporter found for case [%s]", reportCase))
+                );
     }
 }

@@ -6,12 +6,12 @@ spring:
       database: items-database
       username: uploader
       password: uploader
+    redis:
+      host: localhost
+      port: 6379
+      password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
   cache:
     type: redis
-  redis:
-    host: localhost
-    port: 6379
-    password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
   security:
     oauth2:
       client:

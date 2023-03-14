@@ -39,7 +39,7 @@ public class Game extends Item implements Serializable {
 
     @Data
     @Builder
-    public static class RatingHistoryElem implements Serializable{
+    public static class RatingHistoryElem implements Serializable {
 
         @CreatedDate
         private Instant date;

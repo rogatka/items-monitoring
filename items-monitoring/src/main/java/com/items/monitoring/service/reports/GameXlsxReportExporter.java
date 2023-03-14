@@ -46,13 +46,16 @@ public class GameXlsxReportExporter implements ReportExporter {
 
             LocalDate oneMonthAgo = LocalDate.now(clock).minusMonths(1);
 
-            List<Game> games = gameRepository.findByReleaseDateAfter(oneMonthAgo.format(DateTimeFormatter.ISO_LOCAL_DATE), Sort.by(Sort.Direction.DESC, "lastRating"))
+            List<Game> games = gameRepository.findByReleaseDateAfter(
+                            oneMonthAgo.format(DateTimeFormatter.ISO_LOCAL_DATE),
+                            Sort.by(Sort.Direction.DESC, "lastRating")
+                    )
                     .collectList()
                     .toFuture()
                     .get();
 
             fillRows(sheet, workbook, games);
-            autoSizeColumns(sheet, 0 , headers.size());
+            autoSizeColumns(sheet, 0, headers.size());
             workbook.write(outputStream);
             return new Report("games_rating" + getReportCase().getFileExtension(), outputStream.toByteArray());
         }
@@ -92,7 +95,7 @@ public class GameXlsxReportExporter implements ReportExporter {
             Item game = games.get(i);
 
             Cell cell = row.createCell(0);
-            cell.setCellValue(((Game)game).getName());
+            cell.setCellValue(((Game) game).getName());
             cell.setCellStyle(style);
 
             cell = row.createCell(1);

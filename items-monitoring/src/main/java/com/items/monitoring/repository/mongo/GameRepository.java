@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface GameRepository extends ReactiveMongoRepository<Game, String> {
+public interface GameRepository extends ReactiveMongoRepository<Game, String>, GameRepositoryCustom {
 
     Flux<Game> findByNameLike(String query);
 

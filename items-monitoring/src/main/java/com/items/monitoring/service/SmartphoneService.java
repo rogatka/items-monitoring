@@ -29,7 +29,9 @@ public class SmartphoneService {
         if (cachedValue == null) {
             smartphoneMono = smartphoneRepository.findById(id)
                     .doOnSuccess(smartphone -> smartphonesCache.putIfAbsent(id, smartphone))
-                    .switchIfEmpty(Mono.error(() -> new RuntimeException(String.format("Smartphone with id = %s not found", id))));
+                    .switchIfEmpty(Mono.error(() ->
+                            new RuntimeException(String.format("Smartphone with id = %s not found", id)))
+                    );
         } else {
             Smartphone cachedSmartphone = (Smartphone) cachedValue.get();
             log.debug("Took cached value = {}", cachedSmartphone);

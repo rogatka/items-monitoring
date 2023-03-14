@@ -3,6 +3,18 @@ plugins {
 	id "io.spring.dependency-management" version "${ioSpringDependencyManagementPluginVersion}"
 	id "java"
 	id "org.springdoc.openapi-gradle-plugin" version "${springDocOpenApiGradlePluginVersion}"
+	id 'checkstyle'
+}
+
+checkstyle {
+	toolVersion '10.8.1'
+	configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+	source ='src/main/java'
+}
+checkstyleTest {
+	source ='src/test/java'
 }
 
 group = "com.items"
