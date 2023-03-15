@@ -1,1 +1,4 @@
 rootProject.name = 'items-parsing'
+
+include 'items-parsing-service'
+include 'items-parsing-client'
