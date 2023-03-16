@@ -29,7 +29,7 @@ public class GameSearchService {
 				.switchIfEmpty(s -> gameRepository.findByNameLike(query)
 						// if found, save to elasticsearch so next time value
 						// will be retrieved from elasticsearch
-						.doOnNext(e -> elasticsearchGameRepository.save(e).subscribe())
+						.doOnNext(game -> elasticsearchGameRepository.save(game).subscribe())
 						.subscribe(s));
 	}
 

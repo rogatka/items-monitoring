@@ -1,7 +1,7 @@
 package com.items.parsing.service.parsers.smartphones;
 
 import com.items.parsing.service.configuration.properties.CitilinkParsingProperties;
-import com.items.parsing.service.kafka.KafkaNewItemsSender;
+import com.items.parsing.service.messaging.kafka.KafkaNewItemsSender;
 import com.items.parsing.service.model.SmartphoneDto;
 import com.items.parsing.service.parsers.ItemCategory;
 import com.items.parsing.service.parsers.ItemsParser;

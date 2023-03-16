@@ -2,7 +2,7 @@ package com.items.parsing.service.parsers.games;
 
 import com.items.parsing.client.RawgFeignClient;
 import com.items.parsing.client.model.GamesResponse;
-import com.items.parsing.service.kafka.KafkaNewItemsSender;
+import com.items.parsing.service.messaging.kafka.KafkaNewItemsSender;
 import com.items.parsing.service.parsers.ItemCategory;
 import com.items.parsing.service.parsers.ItemsParser;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class GamesParser implements ItemsParser {
     @Override
     public void parse() {
         LocalDate today = LocalDate.now(clock);
-        LocalDate oneMonthAgoFromToday = today.minusMonths(5);
+        LocalDate oneMonthAgoFromToday = today.minusMonths(1);
         int pageNumber = 1;
         
         getPageContent(pageNumber, oneMonthAgoFromToday, today)

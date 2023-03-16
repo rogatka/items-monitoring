@@ -33,6 +33,7 @@ ext {
 	jasperReportsVersion = "6.20.0"
 	apachePoiVersion = "5.2.3"
 	apachePoiOoxmlVersion = "5.2.3"
+	resilience4jVersion = "2.0.2"
 }
 
 openApi {
@@ -76,6 +77,8 @@ dependencies {
 	implementation "net.sf.jasperreports:jasperreports:${jasperReportsVersion}"
 	implementation "org.apache.poi:poi:${apachePoiVersion}"
 	implementation "org.apache.poi:poi-ooxml:${apachePoiOoxmlVersion}"
+	implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
+	implementation "io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}"
 
 	// order is important here
 	annotationProcessor "org.projectlombok:lombok"

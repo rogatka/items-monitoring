@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Observed
-@Tag(name = "Fuzy Search API")
+@Tag(name = "Fuzzy Search API")
 @Slf4j
 @RestController
 @RequestMapping("/search")
@@ -37,13 +37,13 @@ public class SearchController {
         return smartphones;
     }
 
-	@GetMapping("/games")
-	public Flux<Game> fetchGamesByName(@RequestParam(value = "q", required = false) String query) {
-		log.info("searching by name {}", query);
+    @GetMapping("/games")
+    public Flux<Game> fetchGamesByName(@RequestParam(value = "q", required = false) String query) {
+        log.info("searching by name {}", query);
         Flux<Game> games = gameSearchService.processSearch(query);
-		log.info("games {}", games);
-		return games;
-	}
+        log.info("games {}", games);
+        return games;
+    }
 
     @GetMapping("/suggestions/smartphones")
     public Flux<String> fetchSmartphoneSuggestions(@RequestParam(value = "q", required = false) String query) {
@@ -54,11 +54,11 @@ public class SearchController {
     }
 
     @GetMapping(value = "/suggestions/games")
-	public Mono<List<String>> fetchGameSuggestions(@RequestParam(value = "q", required = false) String query) {
-		log.info("fetch suggests {}", query);
+    public Mono<List<String>> fetchGameSuggestions(@RequestParam(value = "q", required = false) String query) {
+        log.info("fetch suggests {}", query);
         Mono<List<String>> suggests = gameSearchService.fetchSuggestions(query)
                 .collectList();
-		log.info("suggests {}", suggests);
-		return suggests;
-	}
+        log.info("suggests {}", suggests);
+        return suggests;
+    }
 }

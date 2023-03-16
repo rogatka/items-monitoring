@@ -28,5 +28,6 @@ Application requires:
 Run the 'docker-compose' from the 'zipkin-docker' directory (docker-compose up)
 
 ### Changelog:
+- 2023-03-15 Divided project onto client and service using gradle sub-modules; Added Feign client;
 - 2023-02-03 Implemented tracing with Micrometer Tracing and Zipkin
 - 2023-01-31 Added parser to track games' rating for the last month.  

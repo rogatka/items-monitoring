@@ -14,7 +14,8 @@ tasks.withType(JavaCompile) {
 }
 
 ext {
-	reactiveFeignVersion = "3.2.6"
+	springCloudDependenciesVersion = "2022.0.1";
+	springOpenFeignVersion = "4.0.1"
 }
 
 configurations {
@@ -29,8 +30,8 @@ repositories {
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-webflux"
-	implementation "org.springframework.cloud:spring-cloud-dependencies:2022.0.1"
-	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1"
+	implementation "org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"
+	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${springOpenFeignVersion}"
 	compileOnly "org.projectlombok:lombok"
 	annotationProcessor "org.projectlombok:lombok"
 }

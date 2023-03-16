@@ -26,12 +26,31 @@ spring:
             client-id: ${KEYCLOAK_CLIENT_ID}
 
 management:
+  endpoints.web.exposure.include: "*"
+  endpoint.health.show-details: always
   tracing:
     enabled: true
     sampling.probability: 1.0
   zipkin:
     tracing:
       endpoint: ${ZIPKIN_ENDPOINT}
+  health:
+    circuitbreakers:
+      enabled: ${CB_ENABLED:true}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      elasticsearchGameRepositoryCircuitBreaker:
+        registerHealthIndicator: true
+        failureRateThreshold: ${ELASTICSEARCH_GAME_CB_FAILURE_RATE_THRESHOLD:10}
+        minimumNumberOfCalls: ${ELASTICSEARCH_GAME_CB_MINIMUM_NUMBER_OF_CALLS:3}
+        permittedNumberOfCallsInHalfOpenState: ${ELASTICSEARCH_GAME_CB_NUMBER_OF_CALLS_IN_HALF_OPEN_STATE:3}
+        slidingWindowSize: ${ELASTICSEARCH_GAME_CB_SLIDING_WINDOW_SIZE:30}
+        slidingWindowType: ${ELASTICSEARCH_GAME_CB_SLIDING_WINDOW_TYPE:COUNT_BASED}
+        slowCallDurationThreshold: ${ELASTICSEARCH_GAME_CB_SLOW_CALL_DURATION_THRESHOLD:1s}
+        slowCallRateThreshold: ${ELASTICSEARCH_GAME_CB_SLOW_CALL_RATE_THRESHOLD:10}
+        waitDurationInOpenState: ${ELASTICSEARCH_GAME_CB_OPEN_STATE_WAIT_DURATION:5s}
 
 logging:
   pattern:

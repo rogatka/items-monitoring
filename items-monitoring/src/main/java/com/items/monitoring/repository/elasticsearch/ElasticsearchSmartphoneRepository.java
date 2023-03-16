@@ -9,6 +9,7 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface ElasticsearchSmartphoneRepository extends ReactiveElasticsearchRepository<Smartphone, String> {
+
     @Query("{\"multi_match\": {\"query\": \"?0\", \"fields\": [\"name\"], \"fuzziness\": \"AUTO\"}}")
     Flux<Smartphone> findFuzzyByName(String query);
 
