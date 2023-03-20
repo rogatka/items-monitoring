@@ -14,8 +14,8 @@ public interface RawgFeignClient {
 
     @GetMapping(value = "/api/games")
     GamesResponse getGames(@RequestParam("page") Integer pageNumber,
-                                 @RequestParam("page_size") Integer pageSize,
-                                 @RequestParam("metacritic") String metacriticRatingRange,
-                                 @RequestParam("dates") String dates,
-                                 @RequestParam("ordering") String ordering);
+                           @RequestParam("page_size") Integer pageSize,
+                           @RequestParam("metacritic") String metacriticRatingRange,
+                           @RequestParam("dates") String dates,
+                           @RequestParam("ordering") String ordering);
 }

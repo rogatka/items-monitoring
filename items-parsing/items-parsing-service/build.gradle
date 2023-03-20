@@ -16,6 +16,8 @@ tasks.withType(JavaCompile) {
 ext {
 	jsoupVersion = "1.15.3"
 	micrometerTracingBomVersion = "1.0.1"
+	wiremockVersion = "3.0.0-beta-4" // compatible with SpringBoot 3 and JakartaEE
+	assertjVersion = "3.24.2"
 }
 
 configurations {
@@ -45,6 +47,11 @@ dependencies {
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	testImplementation "org.springframework.kafka:spring-kafka-test"
+	testCompileOnly "org.projectlombok:lombok"
+	testAnnotationProcessor "org.projectlombok:lombok"
+	testImplementation "com.github.tomakehurst:wiremock:${wiremockVersion}"
+
+	testImplementation "org.assertj:assertj-core:${assertjVersion}"
 }
 
 tasks.named("test") {
